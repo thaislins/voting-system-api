@@ -9,7 +9,6 @@ import java.util.Map;
 import java.util.Set;
 
 import domain.Candidate;
-import domain.Vote;
 
 /**
  * Class that represents the database of the program
@@ -19,7 +18,7 @@ public class VoteDatabase {
     /**
      * Constant that stores the set of voters
      */
-    public static final Set<Vote> VOTERS = new HashSet<>();
+    public static final Set<Long> VOTERS = new HashSet<>();
 
     /**
      * Constant that stores the list of candidates
@@ -29,7 +28,7 @@ public class VoteDatabase {
     /**
      * Constant that stores a map of votes
      */
-    public static final Map<String, Long> VOTES = new HashMap<>();
+    public static final Map<Integer, Long> VOTES = new HashMap<>();
 
     static {
 		CANDIDATES = new ArrayList<Candidate>(Arrays.asList(new Candidate(13, "Haddad", "PT", "https://s3.amazonaws.com/gp-info-eleicoes/fotos/brasil/presidente/fernando-haddad.jpg"),
@@ -49,7 +48,7 @@ public class VoteDatabase {
 				new Candidate(-1, "BRANCO", "", "")));
 		
         for (Candidate candidate : CANDIDATES) {
-            VOTES.put(candidate.getName(), 0L);
+            VOTES.put(candidate.getNumber(), 0L);
         }
     }
 }

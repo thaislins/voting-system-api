@@ -8,7 +8,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import domain.Vote;
 import persistence.VoteDatabase;
 
 @Stateless
@@ -18,7 +17,7 @@ public class VoterResource {
     @GET
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
-    public Set<Vote> getVoters() {
+    public Set<Long> getVoters() {
         return VoteDatabase.VOTERS;
     }
 }
