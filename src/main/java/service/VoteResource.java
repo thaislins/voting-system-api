@@ -38,11 +38,13 @@ public class VoteResource implements VoteInterface {
     @Override
     public void postVoter(Vote vote) throws RepeatedVoteException {
         String candidateId =  vote.getCandidateId();
+        Long voterId = Long.parseLong(vote.getVoterId());
         Candidate candidate = findCandidate(candidateId);
 
-        if (VoteDatabase.VOTERS.contains(vote)) {
+        if (VoteDatabase.VOTERS.contains(voterId)) {
             System.out.println("User already voted");
         } else {
+            VoteDatabase.VOTERS.add(voterId);
             Long voteCount = VoteDatabase.VOTES.get(candidate.getName());
             VoteDatabase.VOTES.put(candidate.getName(), voteCount + 1);
             VoteDatabase.VOTES.put(candidate.getName(), voteCount + 1);

@@ -18,7 +18,7 @@ public class VoterResource {
     @GET
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
-    public Set<Vote> getVoters() {
+    public Set<Long> getVoters() {
         return VoteDatabase.VOTERS;
     }
 }

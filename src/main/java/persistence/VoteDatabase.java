@@ -19,7 +19,7 @@ public class VoteDatabase {
     /**
      * Constant that stores the set of voters
      */
-    public static final Set<Vote> VOTERS = new HashSet<>();
+    public static final Set<Long> VOTERS = new HashSet<>();
 
     /**
      * Constant that stores the list of candidates
