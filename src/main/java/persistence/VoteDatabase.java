@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Set;
 
 import domain.Candidate;
+import domain.Vote;
 
 /**
  * Class that represents the database of the program
@@ -18,7 +19,7 @@ public class VoteDatabase {
     /**
      * Constant that stores the set of voters
      */
-    public static final Set<Long> VOTERS = new HashSet<>();
+    public static final Set<Vote> VOTERS = new HashSet<>();
 
     /**
      * Constant that stores the list of candidates
@@ -43,7 +44,12 @@ public class VoteDatabase {
 				new Candidate(16, "Vera Lúcia", "PSTU", "https://s3.amazonaws.com/gp-info-eleicoes/fotos/brasil/presidente/vera.jpg"),
 				new Candidate(54, "João Vicente Goulart", "PPL", "https://s3.amazonaws.com/gp-info-eleicoes/fotos/brasil/presidente/joao-goulart-filho.jpg"),
 				new Candidate(27, "Eymael", "DC", "https://s3.amazonaws.com/gp-info-eleicoes/fotos/brasil/presidente/eymael.jpg"), 
-				new Candidate(51, "Cabo Daciolo", "Patriota", "https://s3.amazonaws.com/gp-info-eleicoes/fotos/brasil/presidente/cabo-daciolo.jpg"), 
+				new Candidate(51, "Cabo Daciolo", "Patriota", "https://s3.amazonaws.com/gp-info-eleicoes/fotos/brasil/presidente/cabo-daciolo.jpg"),
+				new Candidate(null, "NULO", "", ""),
 				new Candidate(-1, "BRANCO", "", "")));
+		
+        for (Candidate candidate : CANDIDATES) {
+            VOTES.put(candidate.getName(), 0L);
+        }
     }
 }

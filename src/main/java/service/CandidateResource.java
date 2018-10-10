@@ -14,6 +14,7 @@ import persistence.VoteDatabase;
 
 @Stateless
 @Path("/candidates")
+@Produces(MediaType.APPLICATION_JSON)
 public class CandidateResource implements CandidateInterface {
 
     public CandidateResource() {
@@ -31,7 +32,6 @@ public class CandidateResource implements CandidateInterface {
     
     @GET
     @Path("/{number}")
-    @Produces(MediaType.APPLICATION_JSON)
     @Override
     public Candidate getCandidate(@PathParam("number") Integer number) {
         return findCandidate(number);
@@ -39,7 +39,6 @@ public class CandidateResource implements CandidateInterface {
 
     @GET
     @Path("/")
-    @Produces(MediaType.APPLICATION_JSON)
     @Override
     public List<Candidate> getCandidates() {
         return VoteDatabase.CANDIDATES;
