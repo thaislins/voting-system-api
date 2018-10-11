@@ -15,6 +15,9 @@ import domain.Candidate;
 import domain.Vote;
 import persistence.VoteDatabase;
 
+/**
+ * Resource class that contains requests based on votes
+ */
 @Stateless
 @Path("/votes")
 public class VoteResource implements VoteInterface {
@@ -23,6 +26,13 @@ public class VoteResource implements VoteInterface {
         // Default Constructor
     }
 
+    /**
+     * Method that finds iterates through candidates list and finds a candidate by
+     * his number
+     *
+     * @param number Value that defines the candidate's number
+     * @return Candidate
+     */
     public Candidate findCandidate(Integer number) {
         for (Candidate candidate : VoteDatabase.CANDIDATES) {
             if (number == candidate.getNumber()) {
@@ -32,6 +42,12 @@ public class VoteResource implements VoteInterface {
         return null;
     }
 
+    /**
+     * Method that makes a POST request to vote for a specific candidate based on
+     * the voter's id
+     *
+     * @param vote Object that contains voter id and candidate's number
+     */
     @POST
     @Path("/")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -61,6 +77,11 @@ public class VoteResource implements VoteInterface {
         }
     }
 
+    /**
+     * Method that makes a GET request to get the votes for each candidate
+     *
+     * @return Map of votes
+     */
     @GET
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)

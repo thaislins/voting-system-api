@@ -1,12 +1,15 @@
 package domain;
 
+/**
+ * Class that represents a vote data transfer object (DTO)
+ */
 public class Vote {
 
     private String voterId;
     private String candidateNumber;
 
     public Vote() {
-
+        // Default Contructor
     }
 
     public Vote(String voterId, String candidateNumber) {
@@ -29,22 +32,5 @@ public class Vote {
 
     public void setCandidateNumber(String candidateNumber) {
         this.candidateNumber = candidateNumber;
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((voterId == null) ? 0 : voterId.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        boolean result = false;
-        if (obj instanceof Vote) {
-            result = this.voterId == ((Vote) obj).voterId;
-        }
-        return result;
     }
 }

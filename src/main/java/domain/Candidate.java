@@ -1,5 +1,8 @@
 package domain;
 
+/**
+ * Class that represents a candidate data transfer object (DTO)
+ */
 public class Candidate {
 
     private Integer number;
@@ -45,22 +48,5 @@ public class Candidate {
 
     public void setUrlImg(String urlImg) {
         this.urlImg = urlImg;
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((name == null) ? 0 : name.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        boolean result = false;
-        if (obj instanceof Candidate) {
-            result = this.name == ((Candidate) obj).name;
-        }
-        return result;
     }
 }
