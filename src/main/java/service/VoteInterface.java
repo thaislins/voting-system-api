@@ -21,5 +21,5 @@ public interface VoteInterface {
      *
      * @return Map of votes
      */
-    Map<Integer, Long> getVotes();
+    Map<String, Long> getVotes();
 }
