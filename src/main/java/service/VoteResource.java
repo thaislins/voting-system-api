@@ -7,7 +7,9 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import domain.Candidate;
 import domain.Vote;
@@ -36,21 +38,27 @@ public class VoteResource implements VoteInterface {
     @Produces(MediaType.APPLICATION_JSON)
     @Override
     public void postVote(Vote vote) {
-        Integer candidateId = Integer.parseInt(vote.getCandidateId());
-        Long voterId = Long.parseLong(vote.getVoterId());
+        Integer candidateNumber = null;
+        Long voterId = null;
+        try {
+            candidateNumber = Integer.parseInt(vote.getCandidateNumber());
+            voterId = Long.parseLong(vote.getVoterId());
+        } catch (NumberFormatException ex) {
+            System.out.println(ex.getMessage());
+        }
         Long voteCount;
 
         if (VoteDatabase.VOTERS.contains(voterId)) {
-            System.out.println("User already voted");
-        } else if (findCandidate(candidateId) == null) {
-            voteCount = VoteDatabase.VOTES.get(null);
-            VoteDatabase.VOTES.put(null, voteCount + 1);
+            throw new WebApplicationException(Response.Status.UNAUTHORIZED);
         } else {
-            voteCount = VoteDatabase.VOTES.get(candidateId);
-            VoteDatabase.VOTES.put(candidateId, voteCount + 1);
+            if (findCandidate(candidateNumber) == null)
+                candidateNumber = null;
+            voteCount = VoteDatabase.VOTES.get(candidateNumber);
+            synchronized (VoteDatabase.VOTES) {
+                VoteDatabase.VOTES.put(candidateNumber, voteCount + 1);
+                VoteDatabase.VOTERS.add(voterId);
+            }
         }
-        
-        VoteDatabase.VOTERS.add(voterId);
     }
 
     @GET

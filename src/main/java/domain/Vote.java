@@ -1,20 +1,18 @@
 package domain;
 
-import java.io.Serializable;
-
-public class Vote implements Serializable {
+public class Vote {
 
     private String voterId;
-    private String candidateId;
-    
+    private String candidateNumber;
+
     public Vote() {
-        
+
     }
 
-    public Vote(String voterId, String candidateId) {
+    public Vote(String voterId, String candidateNumber) {
         super();
         this.voterId = voterId;
-        this.candidateId = candidateId;
+        this.candidateNumber = candidateNumber;
     }
 
     public String getVoterId() {
@@ -25,12 +23,12 @@ public class Vote implements Serializable {
         this.voterId = voterId;
     }
 
-    public String getCandidateId() {
-        return candidateId;
+    public String getCandidateNumber() {
+        return candidateNumber;
     }
 
-    public void setCandidateId(String candidateId) {
-        this.candidateId = candidateId;
+    public void setCandidateNumber(String candidateNumber) {
+        this.candidateNumber = candidateNumber;
     }
 
     @Override
